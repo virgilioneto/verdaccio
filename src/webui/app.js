@@ -10,7 +10,7 @@ import ErrorIcon from '@material-ui/icons/Error';
 
 import storage from './utils/storage';
 import logo from './utils/logo';
-import { makeLogin, isTokenExpire } from './utils/login';
+import {makeLogin} from './utils/login';
 
 import Footer from './components/Footer';
 import Loading from './components/Loading';
@@ -70,8 +70,9 @@ export default class App extends Component {
     // checks for token validity
     const token = storage.getItem('token');
     const username = storage.getItem('username');
-    if (isTokenExpire(token) || isNil(username)) {
-     this.handleLogout();
+
+    if (isNil(token) || isNil(username)) {
+      this.handleLogout();
     } else {
       this.setState({
         user: { username, token },
