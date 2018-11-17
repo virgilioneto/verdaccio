@@ -17,10 +17,18 @@ let renderApp = (Component) => {
   );
 };
 
-renderApp(App);
+/**
+ * An utility to re-render application.
+ */
+function renderAppWrapper(){
+  renderApp(App);
+}
+renderAppWrapper();
 
 if (module.hot) {
   module.hot.accept('./app', () => {
     renderApp(App);
   });
 }
+
+export default renderAppWrapper;

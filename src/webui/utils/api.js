@@ -1,5 +1,6 @@
 import storage from './storage';
 import {HTTP_STATUS} from '../../../src/lib/constants';
+import renderAppWrapper from '../index';
 
 /**
  * CHECK FOR BASE API URL
@@ -34,6 +35,7 @@ function checkAuthentication(response) {
   if (response.status === HTTP_STATUS.UNAUTHORIZED) {
     storage.removeItem('token');
     storage.removeItem('username');
+    renderAppWrapper();
   }
   return response;
 }
