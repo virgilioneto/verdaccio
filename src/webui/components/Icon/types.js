@@ -2,6 +2,7 @@
  * @prettier
  * @flow
  */
+import { Styles } from 'polished';
 
 import { Icons } from './index';
 
@@ -15,6 +16,8 @@ export interface IIconsMap {
   india: string;
   earth: string;
   verdaccio: string;
+  license: string;
+  time: string;
   [key: string]: string;
 }
 
@@ -26,4 +29,5 @@ export interface IProps {
   size?: 'sm' | 'md';
   pointer?: boolean;
   img?: boolean;
+  modifiers?: Styles;
 }

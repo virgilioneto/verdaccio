@@ -3,9 +3,11 @@
  * @flow
  */
 
+import { Styles } from 'polished';
+
 export interface IProps {
   text: string;
   capitalize?: boolean;
   weight?: string;
-  limit?: number;
+  modifiers?: Styles;
 }

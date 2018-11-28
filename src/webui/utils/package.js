@@ -1,6 +1,6 @@
 import isString from 'lodash/isString';
 import isObject from 'lodash/isObject';
-export const TIMEFORMAT = 'YYYY/MM/DD, HH:mm:ss';
+export const TIMEFORMAT = 'DD.MM.YYYY';
 import format from 'date-fns/format';
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
 
@@ -34,23 +34,6 @@ export function formatRepository(repository) {
   }
 
   return null;
-}
-
-
-/**
- * Formats author field for webui.
- * @see https://docs.npmjs.com/files/package.json#author
- */
-export function formatAuthor(author) {
-    if (isString(author)) {
-        return author;
-    }
-
-    if (isObject(author) && author.name) {
-        return author.name;
-    }
-
-    return null;
 }
 
 /**

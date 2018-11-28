@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Package from '../Package';
 import Help from '../Help';
-import { formatAuthor, formatLicense } from '../../utils/package';
+import { formatLicense } from '../../utils/package';
 
 import classes from './packageList.scss';
 
@@ -28,18 +28,9 @@ export default class PackageList extends React.Component {
   renderList = () => {
     const { packages } = this.props;
     return (
-      <ul>
-        {packages.map((pkg, i) => {
-          const { label: name, version, description, time, keywords } = pkg;
-          const author = formatAuthor(pkg.author);
-          const license = formatLicense(pkg.license);
-          return (
-            <li key={i}>
-              <Package {...{ name, version, author, description, license, time, keywords }} />
-            </li>
-          );
-        })}
-      </ul>
+      packages.map((pkg, i) => (
+        <Package key={i} {...pkg} name={pkg.label} license={formatLicense(pkg.license)} />
+      ))
     );
   }
 
