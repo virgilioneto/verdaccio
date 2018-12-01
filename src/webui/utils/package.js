@@ -36,6 +36,33 @@ export function formatRepository(repository) {
   return null;
 }
 
+
+/**
+ * Formats author field for webui.
+ * @see https://docs.npmjs.com/files/package.json#author
+ */
+export function formatAuthor(author) {
+    let authorDetails = { name: 'Anonymous', email: '', avatar: '' };
+
+    if (isString(author)) {
+      authorDetails = { 
+        ...authorDetails, 
+        name: author ? author : authorDetails.name
+      };
+    }
+
+    if (isObject(author)) {
+      authorDetails = { 
+        ...authorDetails, 
+        name: author.name ? author.name : authorDetails.name,
+        email: author.email ? author.email : authorDetails.email,
+        avatar: author.avatar ? author.avatar : authorDetails.avatar
+      };
+    }
+
+    return authorDetails;
+}
+
 /**
  * For <LastSync /> component
  * @param {array} uplinks

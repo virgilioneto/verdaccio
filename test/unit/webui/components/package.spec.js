@@ -24,7 +24,7 @@ const dateOneMonthAgo = () => {
 describe('<Package /> component', () => {
   it('should load the component', () => {
     const props = {
-      label: 'verdaccio',
+      name: 'verdaccio',
       version: '1.0.0',
       time: dateOneMonthAgo(),
       license: 'MIT',
@@ -46,7 +46,7 @@ describe('<Package /> component', () => {
     // integration expectations
 
     // check link
-    expect(wrapper.find(A).prop('to')).toEqual(`detail/${props.label}`);
+    expect(wrapper.find(A).prop('to')).toEqual(`detail/${props.name}`);
 
     // check version
     expect(wrapper.find(Version).prop('children')).toEqual(`${props.version} version`);
@@ -81,6 +81,11 @@ describe('<Package /> component', () => {
       version: '1.0.0',
       time: dateOneMonthAgo(),
       license: 'MIT',
+      author: {
+        name: 'Anonymous',
+        email: '',
+        avatar: ''
+      },
       description: 'Private NPM repository'
     };
     const wrapper = mount(

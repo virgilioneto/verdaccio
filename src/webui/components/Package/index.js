@@ -19,26 +19,20 @@ const getInitialsName = (name: string) =>
     .reduce((accumulator, currentValue) => accumulator.charAt(0) + currentValue.charAt(0), '')
     .toUpperCase();
 
-const Package = ({
-  name: label,
-  version,
-  time,
-  author: { name = 'Anonymous', avatar = '', email = '' },
-  description,
-  license = 'Unlicensed',
-  keywords,
-}: IProps): Element<Wrapper> => (
+const Package = ({ name: label, version, time, author: { name, email, avatar }, description, license, keywords = [] }: IProps): Element<Wrapper> => (
   <Wrapper>
     <Header>
       <A to={`detail/${label}`}>
         <Name>{label}</Name>
-        {version && <Version>{`${version} version`}</Version>}
+        <Version>{`${version} version`}</Version>
       </A>
       <Overview>
-        <OverviewItem>
-          <Icon name="license" modifiers={margin('4px', '5px', '0px', '0px')} />
-          {license || 'Unlicensed'}
-        </OverviewItem>
+        {license && (
+          <OverviewItem>
+            <Icon name="license" modifiers={margin('4px', '5px', '0px', '0px')} />
+            {license}
+          </OverviewItem>
+        )}
         <OverviewItem>
           <Icon name="time" />
           {`Published on ${formatDate(time)} • ${formatDateDistance(time)} ago`}
@@ -74,17 +68,5 @@ const Package = ({
     )}
   </Wrapper>
 );
-
-Package.defaultProps = {
-  author: {
-    name: 'Anonymous',
-    avatar: '',
-    email: '',
-    url: '',
-  },
-  description: '',
-  license: 'Unlicensed',
-  keywords: [],
-};
 
 export default Package;
